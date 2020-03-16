@@ -10,8 +10,12 @@
 
     grep Chlorobium complete-ncbi-genomes-summary.txt | cut -f 20 > Chlorobium-ncbi-genome-names.txt
 
-# Download each	of the genomes.
-    
-    for next in `cat complete-genome-list.txt`; do wget -P /Users/joevineis/ncbi_genome_db/ "$next"/*genomic.fna.gz; done
+# Generate a bash script that contains a wget command for each of the genomes in your list. 
+ 
+    python gen-ncbi-wget-commands.py Chlorobium-ncbi-genome-names.txt Chlorobium-ncbi-command.shx
+ 
+# Run the bash command. 
+
+    bash Chlorobium-ncbi-command.shx
 
 
