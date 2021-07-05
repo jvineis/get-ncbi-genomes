@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=10
+#SBATCH --mem=100Gb
+#SBATCH --time=18:00:00
+#SBATCH --partition=short
+#SBATCH --array=1-81
+
+SAMPLE=$(sed -n "$SLURM_ARRAY_TASK_ID"p sample-names.txt)
+gunzip ${SAMPLE}_genomic.fna.gz
+anvi-script-reformat-fasta ${SAMPLE}_genomic.fna --simplify-names -o ${SAMPLE}.fna 
+anvi-gen-contigs-database -f ${SAMPLE}.fna -o ${SAMPLE}.db
+anvi-run-hmms -c ${SAMPLE}.db -T 30 --just-do-it
+
