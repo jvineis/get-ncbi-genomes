@@ -26,11 +26,16 @@
     python gen-ncbi-wget-commands.py Baker-mag-genome-names.txt Baker-ncbi-command.shx
     sbatch Baker-ncbi-command.shx
     
-# Now you can change into the directory where all of the MAGs ended up and run the script that will generate and anvio db, run HMMs for single copy genes and generate simple summary statistics for each MAG.
+# Now you can change into the directory where all of the MAGs ended up and run the script that will generate and anvio db, run HMMs for single copy genes which allow for the generation of simple summary statistics for each MAG including completion scores and the probability that the MAG represents a candidate phyla.
 
     cd BAKER/
     ls *gz | cut -f 1,2,3 -d _ > sample-names.txt
     conda activate anvio-6.2
     sbatch x_gen-contigsdb.shx
+
+# Once this porcess is complete, you can run the gtdbtk taxonomy caller as outlined by the steps below including 1) build a file that contains the path and name for each MAG required by gtdbtk 2) run the gtdbtk pipeline
+
+    conda deactivate 
+    conda activate gtdbtk
     
 
