@@ -30,5 +30,7 @@
 
     cd BAKER/
     ls *gz | cut -f 1,2,3 -d _ > sample-names.txt
-    conda activate anvio-7.0 
+    conda activate anvio-6.2
     sbatch x_gen-contigsdb.shx
+    
+
