@@ -11,5 +11,6 @@ SAMPLE=$(sed -n "$SLURM_ARRAY_TASK_ID"p sample-names.txt)
 gunzip ${SAMPLE}_genomic.fna.gz
 anvi-script-reformat-fasta ${SAMPLE}_genomic.fna --simplify-names -o ${SAMPLE}.fna 
 anvi-gen-contigs-database -f ${SAMPLE}.fna -o ${SAMPLE}.db
-anvi-run-hmms -c ${SAMPLE}.db -T 30 --just-do-it
-
+anvi-run-hmms -c ${SAMPLE}.db -T 30
+anvi-run-hmms -c ${SAMPLE}.db -H ~/scripts/databas/Campbell_et_al/ -T 30
+anvi-script-predict-CPR-genomes cpr-bscg.classifier -c ${SAMPLE}.db -o ${SAMPLE}.candidate-results.txt
