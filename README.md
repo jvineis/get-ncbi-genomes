@@ -33,7 +33,7 @@
     conda activate anvio-6.2
     sbatch x_gen-contigsdb.shx
 
-# Once this porcess is complete, you can run the gtdbtk taxonomy caller as outlined by the steps below including 1) build a file that contains the path and name for each MAG required by gtdbtk 2) run the gtdbtk pipeline
+# Once this porcess is complete, you can run the gtdbtk taxonomy caller as outlined by the steps below including 1) build a file that contains the path and name for each MAG required by gtdbtk 2) run the gtdbtk pipeline. 
 
     conda deactivate 
     conda activate gtdbtk
