@@ -32,8 +32,22 @@
     ls *gz | cut -f 1,2,3 -d _ > sample-names.txt
     conda activate anvio-6.2
     sbatch x_gen-contigsdb.shx
+    
+# Next you will want to run the anvio command that will return summary statistics for each of your MAGs in a single table. But first you will need to build an externa genomes txt file.  The steps for this process are outlined below.
 
-# Once this porcess is complete, you can run the gtdbtk taxonomy caller as outlined by the steps below including 1) build a file that contains the path and name for each MAG required by gtdbtk 2) run the gtdbtk pipeline. 
+    ls *.db | sed 's/\.db//g' | sed 's/\./_/g' > 1
+    ls *.db > 2
+    paste 1 2 > external-genomes.txt
+    
+#### add the text below to the top of the external-genomes.txt file
+
+    name	contigs_db_path
+    
+#### run the command to summarize the MAGs
+   
+    sbatch x_get-genome-summaries.shx
+
+# Once this porcess is complete, you might want to run the gtdbtk taxonomy caller as outlined by the steps below including 1) build a file that contains the path and name for each MAG required by gtdbtk 2) run the gtdbtk pipeline. 
 
     conda deactivate 
     conda activate gtdbtk
@@ -41,6 +55,18 @@
     ls *.fna | grep -v genomic | sed 's/\.fna//g' > 2
     paste 1 2 > x_gtdb-batchfile.txt
     sbatch x_run-gtdbtk.shx
+    
+## Now you may want to incorportate these MAGs into an existing set of MAGs that you have already run a similar set of bioinformatic steps on.  I will outline the steps below to combine the MAGs in the analysis that you conucted above with another set of MAGs (with anvio dbs and single copy gene collections etc) into a single directory, and conduct a phylogenomic analysis using anvio.  
+
+    rsync -HalP *.db /scratch/vineis.j/ESTUARY-and-FTR/
+    cd rsync -HalP *.fna /scratch/vineis.j/ESTUARY-and-FTR/
+    
+    
+    
+    
+    
+    
+    
     
 
 
