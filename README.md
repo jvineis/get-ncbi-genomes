@@ -37,5 +37,10 @@
 
     conda deactivate 
     conda activate gtdbtk
+    ls *.fna | grep -v genomic > 1
+    ls *.fna | grep -v genomic | sed 's/\.fna//g' > 2
+    paste 1 2 > x_gtdb-batchfile.txt
+    sbatch x_run-gtdbtk.shx
     
+
 
