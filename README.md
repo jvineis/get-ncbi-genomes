@@ -56,7 +56,8 @@
     paste 1 2 > x_gtdb-batchfile.txt
     sbatch x_run-gtdbtk.shx
     
-## Now you may want to incorportate these MAGs into an existing set of MAGs that you have already run a similar set of bioinformatic steps on.  I will outline the steps below to combine the MAGs in the analysis that you conucted above with another set of MAGs (with anvio dbs and single copy gene collections etc) into a single directory, and conduct a phylogenomic analysis using anvio.  
+## Now you may want to incorportate these MAGs into an existing set of MAGs that you have already run a similar set of bioinformatic steps on (just make sure that the versions of anvio used to generate the dbs is the same and you have famsa installed).  
+## I will outline the steps below to combine the MAGs in the analysis that you conucted above with another set of MAGs (with anvio dbs and single copy gene collections etc) into a single directory, and conduct a phylogenomic analysis using anvio.  
 
     rsync -HalP *.db /scratch/vineis.j/ESTUARY-and-FTR/
     cd rsync -HalP *.fna /scratch/vineis.j/ESTUARY-and-FTR/
