@@ -10,10 +10,15 @@
 
     grep Chlorobium complete-ncbi-genomes-summary.txt | cut -f 20 > Chlorobium-ncbi-genome-names.txt
 
-# Generate a bash script that contains a wget command for each of the genomes in your list. 
+# Alternatively, if you have a list of GCA numbers instead of a specific taxonomy that you want to retrieve, you can use the "collect-ncbi-paths.py" script to collect the paths that can be used as input for the next step.  See and eample of this below
+
+    python collect-ncbi-genomes.shx -f accession.txt -n complete-ncbi-genomes-summary.txt -o narG-reference-genome-paths.txt
+
+# Generate a bash script that contains a wget command for each of the genomes in your list. I included the way you might approach this for the Chlorobium and the list of GCA numbers 
  
     python gen-ncbi-wget-commands.py Chlorobium-ncbi-genome-names.txt Chlorobium-ncbi-command.shx
- 
+    python gen-ncbi-wget-commands.py narG-reference-genome-paths.txt narg-ncbi-command.shx
+    
 # Run the bash command. 
 
     bash Chlorobium-ncbi-command.shx
